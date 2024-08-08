@@ -38,14 +38,24 @@ if choice == "Profiling":
     if df is not None:
         profile_report = ProfileReport(df)
         profile_report.to_file("report.html")
-    with open("report.html", "r", encoding="utf-8") as f:
-        html = f.read()
-    st.components.v1.html(html, height=1000, scrolling=True)
+        with open("report.html", "r", encoding="utf-8") as f:
+            html = f.read()
+        st.components.v1.html(html, height=1000, scrolling=True)
+    else:
+        st.write("No data available for profiling. Please upload a dataset first.")
 
 if choice == "Machine Learning":
     st.title("Machine Learning on progress")
-    target = st.select_box("Select Target Column", df.columns)
-    
+    target = st.selectbox("Select Target Column", df.columns)
+    setup(data=df, target=target, verbose=False)
+    setup_df = pull()
+    st.info("This is the ML Experiment settings")
+    st.dataframe(setup_df)
+    best_model = compare_models()
+    compare_df = pull()
+    st.info("This is the ML Model")
+    st.dataframe(compare_df)
+    best_model
     
 if choice == "Download":
     pass
