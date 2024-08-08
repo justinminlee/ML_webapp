@@ -6,8 +6,9 @@ import os
 from pydantic_settings import BaseSettings
 
 # Import Profiling capability
-import pandas_profiling
-from streamlit_pandas_profiling import st_profiling_report
+from pandas_profiling import ProfileReport
+# from streamlit_pandas_profiling import st_profiling_report
+from ydata_profiling import ProfileReport
 
 # Path to your local image file
 image_path = "/Users/justinlee/Desktop/AutoML Webpage/ML_webapp/python_image.png"
@@ -35,9 +36,11 @@ if choice == "Upload":
 
 if choice == "Profiling":
     st.title("Automated Exploratory Data Analysis")
+    # profile_report = df.profile_report()
+    # st_profile_report(profile_report)
     profile_report = df.profile_report()
-    st_profile_report(profile_report)
-
+    ProfileReport(profile_report)
+    pass
 
 if choice == "Machine Learning":
     pass
