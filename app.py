@@ -2,13 +2,12 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import os
-
 from pydantic_settings import BaseSettings
 
+# Machine Learning stuff
+from pycaret.regression import setup, compare_models, pull, save_model
 
 # Import Profiling capability
-# from pandas_profiling import ProfileReport
-# from streamlit_pandas_profiling import st_profiling_report
 from ydata_profiling import ProfileReport
 
 # Path to your local image file
@@ -43,11 +42,10 @@ if choice == "Profiling":
         html = f.read()
     st.components.v1.html(html, height=1000, scrolling=True)
 
-
-
-
 if choice == "Machine Learning":
-    pass
-
+    st.title("Machine Learning on progress")
+    target = st.select_box("Select Target Column", df.columns)
+    
+    
 if choice == "Download":
     pass
