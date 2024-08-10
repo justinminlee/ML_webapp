@@ -55,7 +55,9 @@ if choice == "Machine Learning":
     compare_df = pull()
     st.info("This is the ML Model")
     st.dataframe(compare_df)
-    best_model
+    save_model(best_model, "best_model")
     
-if choice == "Download":
-    pass
+
+if choice == "Download": 
+    with open('best_model.pkl', 'rb') as f: 
+        st.download_button('Download Model', f, file_name="best_model.pkl")
