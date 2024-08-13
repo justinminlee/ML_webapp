@@ -15,7 +15,7 @@ image_path = "/Users/justinlee/Desktop/AutoML Webpage/ML_webapp/python_image.png
 
 # Load the image from the specified path
 image = Image.open(image_path)
-
+ 
 # Sidebar setup
 with st.sidebar:
     # Display the image in the sidebar
