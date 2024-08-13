@@ -46,26 +46,27 @@ if choice == "Profiling":
 
 if choice == "Machine Learning":
     st.title("Machine Learning on progress")
-    target = st.selectbox("Select Target Column", df.columns)
+    target = st.selectbox("Select The Target Column", df.columns)
     
     # Convert boolean target to numeric if selected
     # if df[target].dtype == 'bool':
     #     df[target] = df[target].astype(int)
     
-    # Proceed with setup
-    setup(data=df, target=target, verbose=False)
-    setup_df = pull()
-    st.info("This is the ML Experiment settings")
-    st.dataframe(setup_df)
-    
-    # Compare models
-    best_model = compare_models()
-    compare_df = pull()
-    st.info("This is the ML Model")
-    st.dataframe(compare_df)
-    
-    # Save the best model
-    save_model(best_model, "best_model")
+    if st.button('Run Machine Learning'):
+        # Proceed with setup
+        setup(data=df, target=target, verbose=False)
+        setup_df = pull()
+        st.info("This is the ML Experiment settings")
+        st.dataframe(setup_df)
+        
+        # Compare models
+        best_model = compare_models()
+        compare_df = pull()
+        st.info("This is the ML Model")
+        st.dataframe(compare_df)
+        
+        # Save the best model
+        save_model(best_model, "best_model")
     
 
 if choice == "Download": 
